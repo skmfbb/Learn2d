@@ -8,17 +8,17 @@
 *.pidb
 *.unityproj
 .DS_Store
-unity/Library/FailedAssetImports.txt
-unity/Library/cache/
-unity/Library/previews/
-unity/Library/ScriptAssemblies
-unity/obj
-unity/Temp
+Library/FailedAssetImports.txt
+Library/cache/
+Library/previews/
+Library/ScriptAssemblies
+obj
+Temp
  
-unity/Library/*
-!unity/Library/*.asset
+Library/*
+!Library/*.asset
 
-/unity/unity.suo
+unity.suo
 
 
 #################
