@@ -4,11 +4,12 @@ using System.Collections;
 public class MoveController : MonoBehaviour {
 
     public float speed = 10.0F;
-    public float jumpSpeed = 10.0F;
+    public float jumpSpeed = 20.0F;
     public float gravity = 10.0F;
     private Vector3 moveDirection = Vector3.zero;
 	private MOVEMENT current_move = 0;
 	
+	//WTF IS THIS ENUM ???
 	enum MOVEMENT {
 		MOVE_LEFT = 0,
 		MOVE_RIGHT,
@@ -17,8 +18,6 @@ public class MoveController : MonoBehaviour {
 	};
 	
 	animator character_animation;
-	
-
 	
 	void Start () {
 		//setting default animation params
@@ -38,7 +37,7 @@ public class MoveController : MonoBehaviour {
 		CharacterController controller = GetComponent<CharacterController>();
 
 		if (controller.isGrounded) {
-			moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+			moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, 0); //this is a 2D game, so only X-axis
         	moveDirection = transform.TransformDirection(moveDirection);
        	 	moveDirection *= speed;
             if (Input.GetButton("Jump")) {
