@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//allows to play animation from spritesheets. Input sprite must be contained in main texture
 public class animator : MonoBehaviour {
 	
 	private int columns_size;
@@ -16,6 +17,8 @@ public class animator : MonoBehaviour {
 		fps = _fps;
 	}
 	
+	//start_frame - offset for selected row
+	//curr_frames count - frames, that must be played
 	public void animate(int curr_row, int start_frame, int curr_frames_count) {
 		
 		MeshRenderer renderer = (MeshRenderer) GetComponent ("MeshRenderer");	
