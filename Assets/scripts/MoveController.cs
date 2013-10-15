@@ -7,14 +7,14 @@ public class MoveController : MonoBehaviour {
     public float jumpSpeed = 20.0F;
     public float gravity = 10.0F;
     private Vector3 moveDirection = Vector3.zero;
-	private MOVEMENT current_move = 0;
+	private CHARACTER_STATE current_state = 0; // Allows to know which kind of animation should be played
 	
-	//WTF IS THIS ENUM ???
-	enum MOVEMENT {
+ 	
+	enum CHARACTER_STATE {
 		MOVE_LEFT = 0,
 		MOVE_RIGHT,
-		LEFT,
-		RIGHT
+		LOOK_LEFT,
+		LOOK_RIGHT
 	};
 	
 	animator character_animation;
@@ -44,7 +44,7 @@ public class MoveController : MonoBehaviour {
                 moveDirection.y = jumpSpeed;
 			}
         } else {
-			moveDirection.x = speed * Input.GetAxis("Horizontal");
+			moveDirection.x = speed * Input.GetAxis("Horizontal"); //only horizontal move control while flying
 		}
 			
         moveDirection.y -= gravity * Time.deltaTime;
@@ -54,18 +54,18 @@ public class MoveController : MonoBehaviour {
 	void updateState() {
  
 		if (moveDirection.x > 0) {
-			current_move = MOVEMENT.MOVE_RIGHT;
+			current_state = CHARACTER_STATE.MOVE_RIGHT;
 		}  else	
 		if (moveDirection.x < 0) {
-			current_move = MOVEMENT.MOVE_LEFT;
+			current_state = CHARACTER_STATE.MOVE_LEFT;
 		} else 
-		if (moveDirection.x < 0.2f) {	
+		if (moveDirection.x < 0.2f) { // as temp solution. Disables low inertion value and switches animation. 
 			moveDirection.x = 0.0f;
-			if (current_move == MOVEMENT.MOVE_LEFT) {
-					current_move = MOVEMENT.LEFT;
+			if (current_state == CHARACTER_STATE.MOVE_LEFT) {
+					current_state = CHARACTER_STATE.LOOK_LEFT;
 			}
-			if (current_move == MOVEMENT.MOVE_RIGHT) {
-					current_move = MOVEMENT.RIGHT;
+			if (current_state == CHARACTER_STATE.MOVE_RIGHT) {
+					current_state = CHARACTER_STATE.LOOK_RIGHT;
 			}
 			
 		}
@@ -73,16 +73,16 @@ public class MoveController : MonoBehaviour {
 	
 	void updateAnimation() {
 	
-		if (current_move == MOVEMENT.MOVE_RIGHT) {
-			character_animation.animate(0, 0, 6);
-		}  
-		if (current_move == MOVEMENT.MOVE_LEFT) {
+		if (current_state == CHARACTER_STATE.MOVE_RIGHT) {
+			character_animation.animate(0, 0, 6); //only for current spritesheet
+		} else  
+		if (current_state == CHARACTER_STATE.MOVE_LEFT) {
 	 		character_animation.animate(1, 0, 6);
-		}
-		if (current_move == MOVEMENT.RIGHT) {
+		} else
+		if (current_state == CHARACTER_STATE.LOOK_RIGHT) {
 	 		character_animation.animate(2, 0, 1);
-		}
-		if (current_move == MOVEMENT.LEFT) {
+		} else
+		if (current_state == CHARACTER_STATE.LOOK_LEFT) {
 	 		character_animation.animate(2, 1, 1);
 		}
 	}
