@@ -6,8 +6,8 @@ public class MoveController : MonoBehaviour {
     public float speed = 10.0F;
     public float jumpSpeed = 20.0F;
     public float gravity = 10.0F;
-    private Vector3 move_direction = Vector3.zero;
-	
+ 
+	private Vector3 move_direction = Vector3.zero;
 	
 	CharacterAnimator character_animation;
 	
@@ -42,5 +42,4 @@ public class MoveController : MonoBehaviour {
         controller.Move(move_direction * Time.deltaTime);
 	}
 	
-
 }

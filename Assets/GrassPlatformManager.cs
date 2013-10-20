@@ -28,6 +28,7 @@ public class GrassPlatformManager : MonoBehaviour {
         levelPlatformsConfig.Add(new Vector3(1, 1, 5));
         levelPlatformsConfig.Add(new Vector3(7, 3, 3));
         levelPlatformsConfig.Add(new Vector3(3, 3, 2));
+		levelPlatformsConfig.Add(new Vector3(5, 1, 10));
     }
 
 	void GeneratePlatforms()
