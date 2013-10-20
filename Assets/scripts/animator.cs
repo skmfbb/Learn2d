@@ -27,6 +27,10 @@ public class animator : MonoBehaviour {
 		float frame_height = 1.0f / rows_size;
 		
 		int curr_frame = start_frame + ((int)(Time.time*fps))%(curr_frames_count);
+		if (curr_frame >= columns_size) {
+			curr_row++;
+			curr_frame %= columns_size; 
+		}
 		 
 	 	renderer.material.SetTextureOffset("_MainTex", new Vector2(frame_width*curr_frame, frame_height*(rows_size - curr_row - 1)));
 		renderer.material.SetTextureScale("_MainTex", new Vector2(1.0f/columns_size, 1.0f/rows_size));

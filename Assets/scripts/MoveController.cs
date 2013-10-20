@@ -23,7 +23,7 @@ public class MoveController : MonoBehaviour {
 		//setting default animation params
 		character_animation = (animator)GetComponent("animator");	
 		character_animation.setFps(12);
-		character_animation.setSize(6,3);
+		character_animation.setSize(8,10);
 	}
 	
     void Update() {
@@ -74,16 +74,16 @@ public class MoveController : MonoBehaviour {
 	void updateAnimation() {
 	
 		if (current_state == CHARACTER_STATE.MOVE_RIGHT) {
-			character_animation.animate(0, 0, 6); //only for current spritesheet
+			character_animation.animate(0, 4, 8); //only for current spritesheet
 		} else  
 		if (current_state == CHARACTER_STATE.MOVE_LEFT) {
-	 		character_animation.animate(1, 0, 6);
+	 		character_animation.animate(5, 4, 6);
 		} else
 		if (current_state == CHARACTER_STATE.LOOK_RIGHT) {
-	 		character_animation.animate(2, 0, 1);
+	 		character_animation.animate(4, 0, 1);
 		} else
 		if (current_state == CHARACTER_STATE.LOOK_LEFT) {
-	 		character_animation.animate(2, 1, 1);
+	 		character_animation.animate(9, 0, 1);
 		}
 	}
 }
