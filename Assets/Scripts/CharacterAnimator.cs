@@ -22,7 +22,7 @@ public class CharacterAnimator : SpriteAnimator {
 	private void updateState(Vector3 move_direction) {
  		
 		CharacterController controller = GetComponent<CharacterController>();
-		
+
 		if (!controller.isGrounded) {//jumping states
 			
 			if (move_direction.x < 0) {
